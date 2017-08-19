@@ -1,11 +1,11 @@
 {
-  "name": "unity-utils-pool",
-  "version": "0.0.2",
+  "name": "unity-pools",
+  "version": "0.0.3",
   "description": "object pools",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/beatthat/unity-utils-pool.git"
+    "url": "git+https://github.com/beatthat/unity-pools.git"
   },
   "files": [
     "index.js",
@@ -15,9 +15,9 @@
   "author": "larrykirschner@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/beatthat/unity-utils-pool/issues"
+    "url": "https://github.com/beatthat/unity-pools/issues"
   },
-  "homepage": "https://github.com/beatthat/unity-utils-pool",
+  "homepage": "https://github.com/beatthat/unity-pools",
   "scripts": {
     "postinstall": "node scripts/postinstall.js"
   },
