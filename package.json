@@ -1,6 +1,6 @@
 {
   "name": "unity-pools",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "object pools",
   "main": "index.js",
   "repository": {
