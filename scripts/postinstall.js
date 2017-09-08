@@ -4,7 +4,7 @@ var ncp = require('ncp');
 
 // Paths
 var src = path.join(__dirname, '..', 'src');
-var dir = path.join(__dirname, '..', '..', '..', 'Assets', 'Plugins', 'BeatThat');
+var dir = path.join(__dirname, '..', '..', '..', 'Assets', 'Plugins', process.env.npm_package_scope);
 var ismodule = __dirname.split(path.sep).filter(function(i) { return i == 'node_modules'; }).length > 0;
 
 // Create folder if missing

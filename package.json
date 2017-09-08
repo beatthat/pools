@@ -1,11 +1,12 @@
 {
-  "name": "unity-pools",
-  "version": "0.0.5",
+  "name": "pools",
+  "scope": "ape",
+  "version": "0.0.6",
   "description": "object pools",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/beatthat/unity-pools.git"
+    "url": "git+https://github.com/beatthat/pools.git"
   },
   "files": [
     "index.js",
@@ -15,11 +16,14 @@
   "author": "larrykirschner@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/beatthat/unity-pools/issues"
+    "url": "https://github.com/beatthat/pools/issues"
   },
-  "homepage": "https://github.com/beatthat/unity-pools",
+  "homepage": "https://github.com/beatthat/pools",
   "scripts": {
-    "postinstall": "node scripts/postinstall.js"
+    "postinstall": "node scripts/postinstall.js",
+    "install:test": "rm -f *.tgz && npm pack && cd test && npm run clean && npm install",
+    "clean": "rm -f *.tgz && cd test && npm run clean",
+    "sync:test2src": "rsync -rv --include '*/' --include '*.cs' --exclude '*' --prune-empty-dirs test/Assets/Plugins/${npm_package_scope}/${npm_package_name}/ ./src/${npm_package_name}/"
   },
   "dependencies": {
     "ncp": "^2.0.0",
