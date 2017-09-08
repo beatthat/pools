@@ -49,7 +49,16 @@ namespace BeatThat
 		// Analysis restore StaticFieldInGenericType
 	}
 
-	/// NOTE would be better to expose only a public interface but unity's Component::GetComponents functions require concrete List<T>
+
+	/// <summary>
+	/// The type checked out by ListPool<T>.Get is actually this disposable to allow use of <c>using</c> blocks, e.g.
+	/// 
+	/// <c>
+	/// using(var list = ListPool<int>.Get()) {
+	/// 	list[0] = 1;
+	/// }
+	/// </c>
+	/// </summary>
 	public class ListPoolList<T> : List<T>, IDisposable
 	{
 		/// <summary>

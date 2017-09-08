@@ -68,7 +68,7 @@ namespace BeatThat
 	/// The type checked out by ArrayPool<T>.Get is actually this disposable to allow use of <c>using</c> blocks, e.g.
 	/// 
 	/// <c>
-	/// using(var poolArray = ArrayPoolArray<int>.Get(1)) {
+	/// using(var poolArray = ArrayPool<int>.Get(1)) {
 	/// 	poolArray.array[0] = 1;
 	/// }
 	/// </c>
