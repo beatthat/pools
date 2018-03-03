@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "path": "^0.12.7",
-    "unity-npm-utils": "github:beatthat/unity-npm-utils"
+    "unity-npm-utils": "github:beatthat/unity-npm-utils#semver:^1.0.0"
   },
   "devDependencies": {}
 }
