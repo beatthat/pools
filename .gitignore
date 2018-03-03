@@ -37,5 +37,5 @@ sysinfo.txt
 *.unitypackage
 
 node_modules
-
 package-lock.json
+unpm-local.json

@@ -1,34 +1,39 @@
 {
-    "name": "pools",
-    "scope": "ape",
-    "version": "0.0.8",
-    "description": "object pools",
-    "main": "index.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/beatthat/pools.git"
-    },
-    "files": [
-        "index.js",
-        "scripts",
-        "src"
-    ],
-    "author": "larrykirschner@gmail.com",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/beatthat/pools/issues"
-    },
-    "homepage": "https://github.com/beatthat/pools",
-    "scripts": {
-        "postinstall": "node scripts/postinstall.js",
-        "install:test": "rm -f *.tgz && npm pack && cd test && npm run clean && npm install",
-        "clean": "rm -f *.tgz && cd test && npm run clean",
-        "cp:test2src": "cd test && node scripts/cp-test2src.js",
-        "overwrite:test2src": "cd test && node scripts/overwrite-test2src.js",
-        "pub:tag": "git add -A && git commit -m ${npm_package_version} && git tag -a ${npm_package_version} -m ${npm_package_version} && git push origin master && git push origin ${npm_package_version}"
-    },
-    "dependencies": {
-        "path": "^0.12.7",
-        "unity-npm-utils": "github:beatthat/unity-npm-utils#semver:^0.0.9"
-    }
+  "name": "pools",
+  "scope": "ape",
+  "version": "0.0.8",
+  "description": "object pools",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beatthat/pools.git"
+  },
+  "files": [
+    "index.js",
+    "scripts",
+    "src"
+  ],
+  "author": "larrykirschner@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/beatthat/pools/issues"
+  },
+  "homepage": "https://github.com/beatthat/pools",
+  "scripts": {
+    "postinstall": "node scripts/postinstall.js",
+    "install:test": "npm pack && cp ${npm_package_name}-${npm_package_version}.tgz ${npm_package_name}-latest.tgz && cd test && npm run clean && npm install",
+    "clean": "rm -f *.tgz package-lock.json && cd test && npm run clean",
+    "cp:test2src": "cd test && node scripts/cp-test2src.js",
+    "overwrite:test2src": "cd test && node scripts/overwrite-test2src.js",
+    "pub:tag": "git add -A && git commit -m ${npm_package_version} && git tag -a ${npm_package_version} -m ${npm_package_version} && git push origin master && git push origin ${npm_package_version}",
+    "preinstall:test": "rm -f *.tgz",
+    "template:update": "node scripts/template-update.js",
+    "version": "git add -A",
+    "postversion": "git push && git push --tags && npm run clean"
+  },
+  "dependencies": {
+    "path": "^0.12.7",
+    "unity-npm-utils": "github:beatthat/unity-npm-utils"
+  },
+  "devDependencies": {}
 }

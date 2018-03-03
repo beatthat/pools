@@ -1,26 +1,13 @@
-var mkdirp = require('mkdirp');
-var path = require('path');
-var ncp = require('ncp');
+const unpm = require('unity-npm-utils');
+const path = require('path');
 
-// Paths
-var src = path.join(__dirname, '..', 'src');
-var dir = path.join(__dirname, '..', '..', '..', 'Assets', 'Plugins', process.env.npm_package_scope);
-var ismodule = __dirname.split(path.sep).filter(function(i) { return i == 'node_modules'; }).length > 0;
+const pkgRoot = path.join(__dirname, '..');
 
-// Create folder if missing
-if (ismodule) {
-  mkdirp(dir, function (err) {
-    if (err) {
-      console.error(err)
-      process.exit(1);
+unpm.pkg2UnityInstall(pkgRoot, (err, info) => {
+    if(err) {
+        console.error('install to unity failed with error: ', err);
+        return;
     }
 
-    // Copy files
-    ncp(src, dir, function (err) {
-      if (err) {
-        console.error(err);
-        process.exit(1);
-      }
-    });
-  });
-}
+    console.log(`installed to ${info.unity_install_path}`);
+});
