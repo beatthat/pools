@@ -1,7 +1,7 @@
 {
   "name": "pools",
   "scope": "ape",
-  "version": "0.0.8",
+  "version": "1.0.0",
   "description": "object pools",
   "main": "index.js",
   "repository": {
