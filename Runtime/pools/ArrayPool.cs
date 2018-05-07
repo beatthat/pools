@@ -30,6 +30,13 @@ namespace BeatThat
 			return new ArrayPoolArray<T>(new T[size]);
 		}
 
+		public static ArrayPoolArray<T> GetCopy(T[] copyFrom)
+		{
+			var a = Get (copyFrom.Length);
+			System.Array.Copy (copyFrom, a.array, copyFrom.Length);
+			return a;
+		}
+
 		private static List<ArrayPoolArray<T>> GetPool(int size)
 		{
 			List<ArrayPoolArray<T>> pool;
@@ -73,7 +80,7 @@ namespace BeatThat
 	/// }
 	/// </c>
 	/// </summary>
-	public struct ArrayPoolArray<T> : IDisposable
+	public class ArrayPoolArray<T> : IDisposable
 	{
 		public ArrayPoolArray(T[] a)
 		{

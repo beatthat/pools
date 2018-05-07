@@ -23,12 +23,19 @@ namespace BeatThat
 	/// </summary>
 	public static class DictionaryPool<K,V>
 	{
-		public static PooledDictionary<K,V> Get()
+		public static PooledDictionary<K,V> Get(IDictionary<K,V> copyFrom = null)
 		{
 			if(m_pool.Count > 0) {
-				var list = m_pool[0];
+				var d = m_pool[0];
 				m_pool.RemoveAt(0);
-				return list;
+
+				if (copyFrom != null) {
+					foreach (var kv in copyFrom) {
+						d[kv.Key] = kv.Value;
+					}
+				}
+
+				return d;
 			}
 
 			return new PooledDictionary<K,V>();

@@ -1,6 +1,6 @@
 {
   "name": "pools",
-  "scope": "ape",
+  "scope": "beatthat",
   "version": "1.0.0",
   "description": "object pools",
   "main": "index.js",
@@ -11,7 +11,8 @@
   "files": [
     "index.js",
     "scripts",
-    "src"
+    "src",
+    "Runtime"
   ],
   "author": "larrykirschner@gmail.com",
   "license": "MIT",
