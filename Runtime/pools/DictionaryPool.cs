@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System;
 
@@ -25,20 +25,27 @@ namespace BeatThat
 	{
 		public static PooledDictionary<K,V> Get(IDictionary<K,V> copyFrom = null)
 		{
-			if(m_pool.Count > 0) {
-				var d = m_pool[0];
+			PooledDictionary<K, V> d;
+
+			if (m_pool.Count > 0)
+			{
+				d = m_pool[0];
 				m_pool.RemoveAt(0);
-
-				if (copyFrom != null) {
-					foreach (var kv in copyFrom) {
-						d[kv.Key] = kv.Value;
-					}
-				}
-
-				return d;
+    
+			}
+			else {
+				d = new PooledDictionary<K, V>();
 			}
 
-			return new PooledDictionary<K,V>();
+            if (copyFrom != null)
+            {
+                foreach (var kv in copyFrom)
+                {
+                    d[kv.Key] = kv.Value;
+                }
+            }
+
+			return d;
 		}
 
 		public static void Return(PooledDictionary<K,V> d)

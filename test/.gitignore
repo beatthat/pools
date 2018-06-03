@@ -10,7 +10,6 @@ Temp
 *.swp
 *.log
 
-ProjectSettings
 Library
 .DS_Store
 
@@ -23,3 +22,7 @@ manifest.json.meta
 EditorTestResults.xml
 
 package-lock.json
+
+
+ProjectSettings/*
+!ProjectSettings/ProjectSettings.asset

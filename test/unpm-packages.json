@@ -1,0 +1,31 @@
+{
+  "packages": {
+    "pools": {
+      "name": "pools",
+      "version": "1.0.1",
+      "config": {},
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/beatthat/pools.git"
+      },
+      "_requested": {
+        "type": "file",
+        "where": "/Users/kirschner/unity-npm-utils-packages/pools/test",
+        "raw": "pools@../pools-latest.tgz",
+        "name": "pools",
+        "escapedName": "pools",
+        "rawSpec": "../pools-latest.tgz",
+        "saveSpec": "file:../pools-latest.tgz",
+        "fetchSpec": "/Users/kirschner/unity-npm-utils-packages/pools/pools-latest.tgz"
+      },
+      "package_unity_src": "/Users/kirschner/unity-npm-utils-packages/pools/test/node_modules/pools/Runtime/pools",
+      "package_unity_samples": "/Users/kirschner/unity-npm-utils-packages/pools/test/node_modules/pools/Samples",
+      "unity_install_path": "/Users/kirschner/unity-npm-utils-packages/pools/test/Assets/Plugins/packages/beatthat/pools",
+      "unity_install_samples_path": "/Users/kirschner/unity-npm-utils-packages/pools/test/Assets/Samples/packages/beatthat/pools",
+      "unity_install": {
+        "path": "/Users/kirschner/unity-npm-utils-packages/pools/test/Assets/Plugins/packages/beatthat/pools",
+        "src": "/Users/kirschner/unity-npm-utils-packages/pools/test/node_modules/pools/Runtime/pools"
+      }
+    }
+  }
+}

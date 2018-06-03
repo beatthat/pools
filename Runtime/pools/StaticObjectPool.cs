@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System;
 
@@ -27,6 +27,7 @@ namespace BeatThat
 		private static int m_createdCount;
 		// Analysis restore StaticFieldInGenericType
 
+		private const int WARN_ON_CREATE_COUNT_THRESHOLD = 1000;
 
 		public static T Get()
 		{
@@ -36,7 +37,7 @@ namespace BeatThat
 				return e;
 			}
 
-			if(++m_createdCount > 100) { 
+			if(++m_createdCount > WARN_ON_CREATE_COUNT_THRESHOLD) { 
 				Debug.LogWarning("[" + Time.frameCount + "] StaticObjectPool<" + typeof(T).Name + ">::Get has created " 
 					+ m_createdCount + " pool objects. There may be a leak.");
 			}

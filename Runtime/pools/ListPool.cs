@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System;
 
@@ -23,15 +23,22 @@ namespace BeatThat
 	/// </summary>
 	public static class ListPool<T>
 	{
-		public static ListPoolList<T> Get()
+        public static ListPoolList<T> Get(ICollection<T> copyFrom = null)
 		{
+            ListPoolList<T> list = null;
 			if(m_pool.Count > 0) {
-				var list = m_pool[0];
+				list = m_pool[0];
 				m_pool.RemoveAt(0);
-				return list;
 			}
+            else {
+                list = new ListPoolList<T>();
+            }
 
-			return new ListPoolList<T>();
+            if(copyFrom != null) {
+                list.AddRange(copyFrom);
+            }
+
+            return list;
 		}
 
 		public static void Return(ListPoolList<T> list)
