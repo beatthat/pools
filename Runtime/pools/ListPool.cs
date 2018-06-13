@@ -1,27 +1,27 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace BeatThat
+namespace BeatThat.Pools
 {
-	/// <summary>
-	/// Static pool of generic List<T>. Unity has an internal class identical to this, 
-	/// but seems to be inaccessible (literally 'internal'?).
-	/// 
-	/// In some sense, you can see why a class w this design might be declared internal
-	/// because it allows any code to inject a list to the pool, but for now gonna assume 
-	/// there's no malicious code out and about inside the game executable.
-	/// 
-	/// Lists returned from pool implement IDisposable to enable this usage:
-	/// 
-	/// <code>
-	/// using(var list = ListPool<T>.Get()) {
-	/// 	..
-	/// }
-	/// </code>
-	/// 
-	/// </summary>
-	public static class ListPool<T>
+    /// <summary>
+    /// Static pool of generic List<T>. Unity has an internal class identical to this, 
+    /// but seems to be inaccessible (literally 'internal'?).
+    /// 
+    /// In some sense, you can see why a class w this design might be declared internal
+    /// because it allows any code to inject a list to the pool, but for now gonna assume 
+    /// there's no malicious code out and about inside the game executable.
+    /// 
+    /// Lists returned from pool implement IDisposable to enable this usage:
+    /// 
+    /// <code>
+    /// using(var list = ListPool<T>.Get()) {
+    /// 	..
+    /// }
+    /// </code>
+    /// 
+    /// </summary>
+    public static class ListPool<T>
 	{
         public static ListPoolList<T> Get(ICollection<T> copyFrom = null)
 		{
@@ -82,3 +82,5 @@ namespace BeatThat
 	}
 
 }
+
+

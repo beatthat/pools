@@ -2,26 +2,26 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-namespace BeatThat
+namespace BeatThat.Pools
 {
-	/// <summary>
-	/// Static pool of generic Dictionary<K,V>. Unity has an internal class identical to this, 
-	/// but seems to be inaccessible (literally 'internal'?).
-	/// 
-	/// In some sense, you can see why a class w this design might be declared internal
-	/// because it allows any code to inject a list to the pool, but for now gonna assume 
-	/// there's no malicious code out and about inside the game executable.
-	/// 
-	/// Dictionaries returned from pool implement IDisposable to enable this usage:
-	/// 
-	/// <code>
-	/// using(var d = DictionaryPool<K,V>.Get()) {
-	/// 	..
-	/// }
-	/// </code>
-	/// 
-	/// </summary>
-	public static class DictionaryPool<K,V>
+    /// <summary>
+    /// Static pool of generic Dictionary<K,V>. Unity has an internal class identical to this, 
+    /// but seems to be inaccessible (literally 'internal'?).
+    /// 
+    /// In some sense, you can see why a class w this design might be declared internal
+    /// because it allows any code to inject a list to the pool, but for now gonna assume 
+    /// there's no malicious code out and about inside the game executable.
+    /// 
+    /// Dictionaries returned from pool implement IDisposable to enable this usage:
+    /// 
+    /// <code>
+    /// using(var d = DictionaryPool<K,V>.Get()) {
+    /// 	..
+    /// }
+    /// </code>
+    /// 
+    /// </summary>
+    public static class DictionaryPool<K,V>
 	{
 		public static PooledDictionary<K,V> Get(IDictionary<K,V> copyFrom = null)
 		{
@@ -82,3 +82,4 @@ namespace BeatThat
 	}
 
 }
+

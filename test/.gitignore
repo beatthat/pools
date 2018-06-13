@@ -23,6 +23,9 @@ EditorTestResults.xml
 
 package-lock.json
 
+unpm-local.json
+unpm-packages.json
 
 ProjectSettings/*
 !ProjectSettings/ProjectSettings.asset
+!ProjectSettings/ProjectVersion.txt

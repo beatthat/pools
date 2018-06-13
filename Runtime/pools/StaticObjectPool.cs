@@ -1,10 +1,10 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace BeatThat
+namespace BeatThat.Pools
 {
-	internal static class StaticObjectPoolHelper
+    internal static class StaticObjectPoolHelper
 	{
 		private static readonly Type[] NO_TYPES = new Type[0];
 		private static readonly object[] NO_OBJECTS = new object[0];
@@ -54,7 +54,7 @@ namespace BeatThat
 				
 			var pObj = obj as Poolable;
 			if(pObj != null) {
-				pObj.OnReturnedToPool();
+                pObj.OnReturnedToPool();
 			}
 			m_pool.Add(obj);
 		}
@@ -64,8 +64,4 @@ namespace BeatThat
 		// Analysis restore StaticFieldInGenericType
 	}
 
-	public interface Poolable
-	{
-		void OnReturnedToPool();
-	}
 }

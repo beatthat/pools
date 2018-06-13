@@ -1,22 +1,22 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
-namespace BeatThat
+namespace BeatThat.Pools
 {
-	/// <summary>
-	/// Static pool of arrays of different sizes. 
-	/// 
-	/// Lists returned from pool implement IDisposable to enable this usage:
-	/// 
-	/// <code>
-	/// using(var arr = ArrayPool<T>.Get()) {
-	/// 	..
-	/// }
-	/// </code>
-	/// 
-	/// </summary>
-	public static class ArrayPool<T>
+    /// <summary>
+    /// Static pool of arrays of different sizes. 
+    /// 
+    /// Lists returned from pool implement IDisposable to enable this usage:
+    /// 
+    /// <code>
+    /// using(var arr = ArrayPool<T>.Get()) {
+    /// 	..
+    /// }
+    /// </code>
+    /// 
+    /// </summary>
+    public static class ArrayPool<T>
 	{
 		public static ArrayPoolArray<T> Get(int size)
 		{
@@ -99,3 +99,4 @@ namespace BeatThat
 	}
 
 }
+

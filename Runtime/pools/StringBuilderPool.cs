@@ -1,18 +1,18 @@
-using UnityEngine;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
 
-namespace BeatThat
+namespace BeatThat.Pools
 {
-	/// <summary>
-	/// Static pool of StringBuilders. Unity has an internal class identical to this, 
-	/// but seems to be inaccessible (literally 'internal'?).
-	/// 
-	/// In some sense, you can see why a class w this design might be declared internal
-	/// because it allows any code to inject a list to the pool, but for now gonna assume 
-	/// there's no malicious code out and about inside the game executable.
-	/// </summary>
-	public static class StringBuilderPool
+    /// <summary>
+    /// Static pool of StringBuilders. Unity has an internal class identical to this, 
+    /// but seems to be inaccessible (literally 'internal'?).
+    /// 
+    /// In some sense, you can see why a class w this design might be declared internal
+    /// because it allows any code to inject a list to the pool, but for now gonna assume 
+    /// there's no malicious code out and about inside the game executable.
+    /// </summary>
+    public static class StringBuilderPool
 	{
 		public static StringBuilder Get()
 		{
@@ -40,3 +40,4 @@ namespace BeatThat
 		// Analysis restore StaticFieldInGenericType
 	}
 }
+
