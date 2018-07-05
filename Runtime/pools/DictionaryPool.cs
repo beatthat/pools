@@ -6,7 +6,7 @@ namespace BeatThat.Pools
 {
     /// <summary>
     /// Static pool of generic Dictionary<K,V>. Unity has an internal class identical to this, 
-    /// but seems to be inaccessible (literally 'internal'?).
+    /// but seems designed to discourage external use (literally 'internal'?).
     /// 
     /// In some sense, you can see why a class w this design might be declared internal
     /// because it allows any code to inject a list to the pool, but for now gonna assume 
@@ -36,6 +36,8 @@ namespace BeatThat.Pools
 			else {
 				d = new PooledDictionary<K, V>();
 			}
+
+            d.Clear(); // safety precaution
 
             if (copyFrom != null)
             {

@@ -34,6 +34,8 @@ namespace BeatThat.Pools
                 list = new ListPoolList<T>();
             }
 
+            list.Clear(); // safety precaution
+
             if(copyFrom != null) {
                 list.AddRange(copyFrom);
             }
