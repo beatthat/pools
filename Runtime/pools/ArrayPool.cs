@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace BeatThat.Pools
 {
+    
+    public delegate T MapDelegate<T, F>(F f);
+
     /// <summary>
     /// Static pool of arrays of different sizes. 
     /// 
@@ -30,12 +33,36 @@ namespace BeatThat.Pools
 			return new ArrayPoolArray<T>(new T[size]);
 		}
 
+
+        public static ArrayPoolArray<T> Map<F>(IList<F> mapFrom, MapDelegate<T,F> mapFunc)
+        {
+            var a = Get(mapFrom.Count);
+            for (var i = 0; i < a.array.Length; i++) {
+                a.array[i] = mapFunc(mapFrom[i]);
+            }
+            return a;
+        }
+
 		public static ArrayPoolArray<T> GetCopy(T[] copyFrom)
 		{
 			var a = Get (copyFrom.Length);
 			System.Array.Copy (copyFrom, a.array, copyFrom.Length);
 			return a;
 		}
+
+        public static ArrayPoolArray<T> GetCopy(IList<T> copyFrom)
+        {
+            var copyFromArray = copyFrom as T[];
+            if(copyFromArray != null) {
+                return GetCopy(copyFromArray);
+            }
+
+            var a = Get(copyFrom.Count);
+            for (var i = 0; i < copyFrom.Count; i++) {
+                a.array[i] = copyFrom[i];
+            }
+            return a;
+        }
 
 		private static List<ArrayPoolArray<T>> GetPool(int size)
 		{
