@@ -30,7 +30,10 @@ Usually you should wrap the list's use in a using block as above, but you can't 
 ```csharp
 var list = ListPool<string>.Get();
 SomeAsyncMethod(list, () => {
-  // this is an async callback for 'done'
+  // have to dispose list manually
+  // because its use extends 
+  // into async callback
+  
   list.Dispose()
 })
 ```
