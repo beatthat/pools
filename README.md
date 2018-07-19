@@ -49,7 +49,7 @@ using(var list = ListPool<string>.Get(d.Values) {
 }
 ```
 
-``` Pools for Dictionary and StringBuilder work similarly to list
+#### Pools for Dictionary and StringBuilder work similarly to list
 
 ```csharp
 IDictionary<string, string> d = SomeDictionary();
