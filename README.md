@@ -1,42 +1,97 @@
-# TEMPLATE
-
-...
-
-## Usage
-
-See the tests in the `Editor/` folder for each class for usage examples.
+Pool and reuse collections and other object types to minimize memory allocation/garbage collection.
 
 ## Install
 
 From your unity project folder:
 
     npm init
-    npm install TEMPLATE --save
-    echo Assets/packages >> .gitignore
-    echo Assets/packages.meta >> .gitignore
+    npm install beatthat/pools --save
 
-The package and all its dependencies will be installed in
-your Assets/packages folder.
+The package and all its dependencies will be installed under Assets/Plugins/packages/beatthat.
 
-## Development
+In case it helps, a quick video of the above: https://youtu.be/Uss_yOiLNw8
 
-Setup and run tests:
+## USAGE
 
-    npm install
-    npm install ..
-    cd test
-    npm install
-    gulp
+#### Use a List in a ```using``` block
 
-Remember that changes made to the test folder are not saved to the package
-unless they are copied back into the source folder.
+The list type returned is a Disposable whose dispose method returns the list to the pool so...
 
-To reinstall the files from the src folder, run `npm install ..` again.
+```csharp
+using(var list = ListPool<string>.Get() {
+  // use the list
+}
+```
 
-### Tests
+#### Use a pooled list and return it manually when you're done
 
-All tests are wrapped in `#if ...` blocks to prevent test spam.
+Usually you should wrap the list's use in a using block as above, but you can't do that if, say, you're going to do something asynchronous with the list.
 
-You can enable tests in: Player settings > Other Settings > Scripting Define Symbols
+```csharp
+var list = ListPool<string>.Get();
+SomeAsyncMethod(list, () => {
+  // this is an async callback for 'done'
+  list.Dispose()
+})
+```
 
-The test key for this package is: TEMPLATE_TESTS
+#### Use a pooled copy of some other collection
+
+If you're using a pooled list to work with a copy of some other collection already in hand, you can pass the collection you want to copy into ```Get``` and the returned list will already have the contents copied for you.
+
+```csharp
+IDictionary<string, string> d = SomeDictionary();
+using(var list = ListPool<string>.Get(d.Values) {
+  // list has all the values from d
+}
+```
+
+``` Pools for Dictionary and StringBuilder work similarly to list
+
+```csharp
+IDictionary<string, string> d = SomeDictionary();
+using(var pooledDict = DictionaryPool<string, string>.Get(d) {
+  // list has all the values from d
+}
+
+using(var sb = StringBuilderPool.Get("init with this string")) {
+
+}
+```
+
+#### ArrayPool requires a size or a collection/array to copy from
+
+```csharp
+using(var a = ArrayPool<string>.Get(3) {
+  // array will have 3 elements
+
+  // actual array is in a.array
+  // because array itself can't be extended to implement IDisposable
+}
+
+IDictionary<string, string> d = SomeDictionary();
+using(var a = ArrayPool<string>.Get(d.Values) {
+  // array will have all the values of d as elements
+
+  // actual array is in a.array
+  // because array itself can't be extended to implement IDisposable
+}
+
+```
+
+#### Use StaticObjectPool<T> to pool other types
+
+You can use StaticObjectPool<T> to pool other c# types as long as they have a no-arg constructor
+
+```csharp
+class Foo {}
+
+class Bar {
+  void SomeMethod()
+  {
+    var foo = StaticObjectPool<Foo>.Get();
+    // do stuff with Foo
+    StaticObjectPool<Foo>.Return(foo);
+  }
+}
+```

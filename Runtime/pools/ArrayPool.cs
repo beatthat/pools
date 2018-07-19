@@ -34,11 +34,13 @@ namespace BeatThat.Pools
 		}
 
 
-        public static ArrayPoolArray<T> Map<F>(IList<F> mapFrom, MapDelegate<T,F> mapFunc)
+        public static ArrayPoolArray<T> Map<F>(ICollection<F> mapFrom, MapDelegate<T,F> mapFunc)
         {
             var a = Get(mapFrom.Count);
-            for (var i = 0; i < a.array.Length; i++) {
-                a.array[i] = mapFunc(mapFrom[i]);
+            var i = 0;
+            foreach (var item in mapFrom)
+            {
+                a.array[i] = mapFunc(item);
             }
             return a;
         }
@@ -50,7 +52,7 @@ namespace BeatThat.Pools
 			return a;
 		}
 
-        public static ArrayPoolArray<T> GetCopy(IList<T> copyFrom)
+        public static ArrayPoolArray<T> GetCopy(ICollection<T> copyFrom)
         {
             var copyFromArray = copyFrom as T[];
             if(copyFromArray != null) {
@@ -58,8 +60,10 @@ namespace BeatThat.Pools
             }
 
             var a = Get(copyFrom.Count);
-            for (var i = 0; i < copyFrom.Count; i++) {
-                a.array[i] = copyFrom[i];
+            var i = 0;
+            foreach (var item in copyFrom) {
+                a.array[i] = item;
+                i++;
             }
             return a;
         }
