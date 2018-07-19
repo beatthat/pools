@@ -57,8 +57,9 @@ using(var pooledDict = DictionaryPool<string, string>.Get(d) {
   // list has all the values from d
 }
 
-using(var sb = StringBuilderPool.Get("init with this string")) {
-
+using(var sb = PooledStringBuilder.Get() {
+    // sb.stringBuilder holds the StringBuilder 
+    // in an IDisposable wrapper
 }
 ```
 
