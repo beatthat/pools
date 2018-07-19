@@ -1,7 +1,7 @@
 {
   "name": "pools",
   "scope": "beatthat",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "object pools",
   "main": "index.js",
   "repository": {
