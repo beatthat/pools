@@ -43,6 +43,16 @@ namespace BeatThat.Pools
             return list;
 		}
 
+        public static ListPoolList<T> Map<F>(ICollection<F> mapFrom, MapDelegate<T, F> mapFunc)
+        {
+            var a = Get();
+            foreach (var item in mapFrom)
+            {
+                a.Add(mapFunc(item));
+            }
+            return a;
+        }
+
 		public static void Return(ListPoolList<T> list)
 		{
 			if(m_pool.Contains(list)) {

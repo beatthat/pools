@@ -41,6 +41,7 @@ namespace BeatThat.Pools
             foreach (var item in mapFrom)
             {
                 a.array[i] = mapFunc(item);
+                i++;
             }
             return a;
         }
