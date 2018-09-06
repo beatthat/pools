@@ -13,7 +13,9 @@
     "scripts",
     "src",
     "Runtime",
-    "Samples"
+    "Samples",
+    "README.md",
+    "readmefiles"
   ],
   "author": "larrykirschner@gmail.com",
   "license": "MIT",
@@ -38,7 +40,8 @@
       "test-cp2src": "copies changes from 'test' package back to package src but does NOT delete removed files",
       "test-overwrite2src": "copies changes from 'test' package back to src. Deletes src before the copy, so effectively whatever is in test becomes the src",
       "npm version [patch|minor|major]": "after everything commited, use npm version to push a tagged release with bumped version"
-    }
+    },
+    "docs-generate": "node scripts/docs-generate.js"
   },
   "dependencies": {
     "path": "^0.12.7",
